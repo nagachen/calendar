@@ -79,9 +79,9 @@ $holiday = ['2023-1-1'=>'元旦','2023-1-2'=>'補假','2023-1-20'=>'彈性放假
 <div class="years"><?=$year?>年</div>
 <!-- 上一月，這一月，下一月 -->
 <div class="a-month">
-<a href="calendar.php?year=<?=$prevyear;?>&month=<?=$prevmonth;?>"><?=$prevmonth;?>月</a>
-<a href="calendar.php?year=<?=$year;?>&month=<?=$month;?>"><?=$month;?>月</a>
-<a href="calendar.php?year=<?=$nextyear;?>&month=<?=$nextmonth;?>"><?=$nextmonth;?>月</a>
+<a href="index.php?year=<?=$prevyear;?>&month=<?=$prevmonth;?>"><?=$prevmonth;?>月</a>
+<a href="index.php?year=<?=$year;?>&month=<?=$month;?>"><?=$month;?>月</a>
+<a href="index.php?year=<?=$nextyear;?>&month=<?=$nextmonth;?>"><?=$nextmonth;?>月</a>
 </div>
 <hr>
 <div class="contianer">
