@@ -31,7 +31,7 @@ $first_week=date('w',$first_day);           #第一週星期幾 六
 $final_week=date('w',$final_day);          #最後一週星期幾 日
 $month_days = ($days + $first_week);      #當月總共要算幾天36
 $month_week = ceil($month_days/7);           #當月有幾週 6
-
+$today=date('Y-n-j');                        #取得今天日期
 
 
 
@@ -99,37 +99,39 @@ $holiday = ['2023-1-1'=>'元旦','2023-1-2'=>'補假','2023-1-20'=>'彈性放假
     // 需要使用explode()取出$data[]日期和判斷空白
     for($i=0;$i<count($data);$i++){
 
-        // $today=date('n-j');
+        #每一個日期都判斷是不是今天？
+        #if($today==$data[$i])
+        #考慮用switch case
         
         $d=($data[$i]=="&nbsp;")?'&nbsp;':explode('-',$data[$i])[2];  #取$i日期
         
-        if($i%7==0 or $i%7==6) {
-            if(isset($holiday[$data[$i]])){
-                 $days=$holiday[$data[$i]];
+        if($i%7==0 or $i%7==6) {                     #判斷6日
+            if(isset($holiday[$data[$i]])){          #判斷國定假日
+                 $days=$holiday[$data[$i]];          #將國定假日值取出
                 echo "<div class='holiday-day'>";
-                echo $d;
+                echo "<span class='day-font'>$d</span>"; #設定天數字型
                 echo "<br>";
-                echo "<span class='holiday-font'>$days</span>";
+                echo "<span class='holiday-font'>$days</span>"; 
                 echo "</div>";
 
-            }else{
+            }else{                                     #不是國定假日的6日
                 echo "<div class='holiday'>";
-                echo $d;
+                echo "<span class='day-font'>$d</span>";
                 echo "</div>";
                 }
-        }else{
-            if(isset($holiday[$data[$i]])){
+        }else{                                           
+            if(isset($holiday[$data[$i]])){               #平日的國定假日
                 $days=$holiday[$data[$i]];
                echo "<div class='holiday-day'>";
-               echo $d;
+               echo "<span class='day-font'>$d</span>";
                echo "<br>";
                echo "<span class='holiday-font'>$days</span>";
                echo "</div>";
 
-           }else{
+           }else{                                                     #不是國定假日的平日
                 echo "<div>";
                 $days=(isset($holiday[$data[$i]]))?$holiday[$data[$i]]:"";
-                echo $d;                
+                echo "<span class='day-font'>$d</span>";               
                 echo "</div>";
     }
     }
