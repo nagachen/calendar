@@ -100,11 +100,19 @@ $holiday = ['2023-1-1'=>'元旦','2023-1-2'=>'補假','2023-1-20'=>'彈性放假
     for($i=0;$i<count($data);$i++){
 
         #每一個日期都判斷是不是今天？
-        #if($today==$data[$i])
+        #
         #考慮用switch case
         
         $d=($data[$i]=="&nbsp;")?'&nbsp;':explode('-',$data[$i])[2];  #取$i日期
-        
+        if($today==$data[$i]){                        #判斷今天  
+            echo "<div class='holiday-day'>";
+            echo "<span class='day-font'>$d</span>";    #設定天數字型
+            echo "<br>";
+            echo "<span class='holiday-font'>$days</span>"; 
+            echo "</div>";
+        }else{                                          
+
+                                
         if($i%7==0 or $i%7==6) {                     #判斷6日
             if(isset($holiday[$data[$i]])){          #判斷國定假日
                  $days=$holiday[$data[$i]];          #將國定假日值取出
@@ -114,7 +122,7 @@ $holiday = ['2023-1-1'=>'元旦','2023-1-2'=>'補假','2023-1-20'=>'彈性放假
                 echo "<span class='holiday-font'>$days</span>"; 
                 echo "</div>";
 
-            }else{                                     #不是國定假日的6日
+            }else{                                        #不是國定假日的6日
                 echo "<div class='holiday'>";
                 echo "<span class='day-font'>$d</span>";
                 echo "</div>";
@@ -136,6 +144,7 @@ $holiday = ['2023-1-1'=>'元旦','2023-1-2'=>'補假','2023-1-20'=>'彈性放假
     }
     }
 }
+    }
    ?>
     
 </div>
