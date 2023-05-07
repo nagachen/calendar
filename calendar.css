@@ -1,6 +1,13 @@
 *{
     box-sizing: border-box;
 }
+body{
+position: relative;
+width: 99vw;
+height: 99vh;
+background-image: url('./images/05.jpg.jpg' );
+background-size: cover;
+}
 /* 主容器 */
 .contianer{
     display:flex;
@@ -8,16 +15,32 @@
     
     margin-top: 1px;
     margin-left: 1px;
+    width:  30vw;
+    position: absolute;
+    left: 100px;
+    bottom: 80px;   
 }
+
 /* 每一天的格子 */
 .contianer>div{
     background-color: white;
     flex-basis: calc(100% / 7);
-    border: 1px solid black;
+    
     margin-top: -1px;
     margin-left: -1px;
-    height:100px;
+    height:70px;
 
+}
+/* 每一個基本的div */
+.contianer>.box{           
+/* From https://css.glass */
+background: rgba(64, 102, 73, 0.27);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.6px);
+-webkit-backdrop-filter: blur(6.6px);
+border: 1px solid rgba(64, 102, 73, 0.64);
+    
 }
 /* 星期日-六 */
 .contianer>.tittle{  
@@ -52,6 +75,6 @@
 .day-font{
     
 }
-.today-day{
-    background-color: #ccc;
+.contianer>.today-day{
+    background-color: #b5dd23;
 }
