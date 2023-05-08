@@ -3,9 +3,9 @@
 }
 body{
 position: relative;
-width: 99vw;
-height: 99vh;
-background-image: url('./images/05.jpg.jpg' );
+width: 100vw;
+height: 100vh;
+
 background-size: cover;
 }
 /* 主容器 */
@@ -18,39 +18,44 @@ background-size: cover;
     width:  30vw;
     position: absolute;
     left: 100px;
-    bottom: 80px;   
+    bottom: 80px;  
+    text-align: center; 
 }
 
 /* 每一天的格子 */
-.contianer>div{
+/* 每一個基本的div */
+.contianer>.box{  
     background-color: white;
     flex-basis: calc(100% / 7);
     
     margin-top: -1px;
     margin-left: -1px;
-    height:70px;
-
-}
-/* 每一個基本的div */
-.contianer>.box{           
+    height:70px;         
 /* From https://css.glass */
-background: rgba(64, 102, 73, 0.27);
+background: rgba(255, 255, 255, 0.13);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(6.6px);
--webkit-backdrop-filter: blur(6.6px);
-border: 1px solid rgba(64, 102, 73, 0.64);
+backdrop-filter: blur(3.3px);
+-webkit-backdrop-filter: blur(3.3px);
+border: 1px solid rgba(255, 255, 255, 0.32);
     
 }
 /* 星期日-六 */
 .contianer>.tittle{  
     height: 30px;
-    background-color: #ccc;
+    /* background-color: #ccc; */
     flex-basis: calc(100% / 7);
+    
 }
 /* 每週六日 */
 .contianer>.holiday{
-    background-color: pink;
+      /* From https://css.glass */
+background: rgba(196, 74, 32, 0.12);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.3px);
+-webkit-backdrop-filter: blur(6.3px);
+border: 1px solid rgba(196, 74, 32, 0.31);
 }
 /* 年的標題 */
 .years{
@@ -64,16 +69,23 @@ border: 1px solid rgba(64, 102, 73, 0.64);
 }
 /* 特別節日字體 */
 .holiday-font{
-   
+    text-align: center;
     color: red;
 }
 /* 特別節日框 */
 .contianer>.holiday-day{
-    background-color: pink;
+    
+  /* From https://css.glass */
+background: rgba(196, 74, 32, 0.12);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.3px);
+-webkit-backdrop-filter: blur(6.3px);
+border: 1px solid rgba(196, 74, 32, 0.31);
 }
 /* 日數的字型 */
 .day-font{
-    
+  
 }
 .contianer>.today-day{
     background-color: #b5dd23;
