@@ -118,10 +118,9 @@
 <!-- 上一月，這一月，下一月 -->
 
 <div class="a-month">
-    <a href="index.php?year=<?= $prevyear; ?>&month=<?= $prevmonth; ?>"><?= $prevmonth; ?>月</a>
+    <a href="index.php?year=<?= $prevyear; ?>&month=<?= $prevmonth; ?>" class="left"></a>
     <a href="index.php?year=<?= $year; ?>&month=<?= $month; ?>"><?= $month; ?>月</a>
-    <a href="index.php?year=<?= $nextyear; ?>&month=<?= $nextmonth; ?>"
-        style="clip-path: polygon(1% 26%, 64% 40%, 60% 0%, 100% 50%, 60% 100%, 64% 63%, 1% 78%);"><?= $nextmonth; ?></a>
+    <a href="index.php?year=<?= $nextyear; ?>&month=<?= $nextmonth; ?>"class="right"></a>
 </div>
 <hr>
 <div class="contianer">
