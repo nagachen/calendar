@@ -16,7 +16,7 @@
     </style>
 </head>
 
-<body >
+<body>
 
     <!-- 萬年歷 -->
 
@@ -36,23 +36,6 @@
     $month_week = ceil($month_days / 7); #當月有幾週 6
     $today = date('Y-n-j'); #取得今天日期
     
-
-
-    #建立月份陣列相關資料
-    $data = [];
-    for ($i = 0; $i < $month_week; $i++) {
-
-        for ($j = 0; $j < 7; $j++) {
-            #判斷要寫入空白還是天數
-            if (($j < $first_week && $i == 0) || ($i == ($month_week - 1) && $final_week < $j)) {
-                $data[] = "&nbsp;";
-            } else {
-                $data[] = $year . '-' . $month . '-' . ($i * 7) + $j - $first_week + 1;
-
-            }
-        }
-    }
-
     #判斷年月有沒有超過
     if ($month == 12) {
         $nextmonth = 1;
@@ -68,9 +51,39 @@
         $prevmonth = $month - 1;
         $prevyear = $year;
     }
-    ?>
-    <!--假日資料庫 -->
-    <?php
+
+    // 為了處理上個月的天數和下個月的天數
+    $prevmonth_first_day = strtotime("$prevyear-$prevmonth-1"); #上個月的第一天秒數
+    $prevmonth_days = date("t", $prevmonth_first_day); #取得上個月最後一天，天數
+    $nextdays = 1;      #下個月從1號開始算
+
+    #建立月份陣列相關資料
+    $data = [];
+    for ($i = 0; $i < $month_week; $i++) {
+
+        for ($j = 0; $j < 7; $j++) {
+            #判斷要寫入空白還是天數
+            if ($j < $first_week && $i == 0) {
+                $prevdays = ($prevmonth_days - $first_week + 1) + $j ;
+                $data[] = $prevyear . '-' . $prevmonth . '-' . $prevdays;
+            } else {
+                if ($i == ($month_week - 1) && $final_week < $j) {
+                    
+                    $data[] = $nextyear . '-' . $nextmonth . '-' . $nextdays++;
+                } else {
+                    $data[] = $year . '-' . $month . '-' . ($i * 7) + $j - $first_week + 1;
+
+                }
+            }
+        }
+    }
+    // <!--假日資料庫 -->
+    // echo"<pre>";
+    // print_r($data);
+    // echo"</pre>";
+    $m = explode('-',$data[15])[1];#取月份
+    echo $m;
+    echo $month;
     $holiday = [
         '2023-1-1' => '元旦',
         '2023-1-2' => '補假',
@@ -96,83 +109,102 @@
     ];
     ?>
 </body>
-<?="<body style='background-image: url(\"./images/$month.jpg\" )'>";?>
+<?= "<body style='background-image: url(\"./images/$month.jpg\" )'>"; ?>
 
-    <!-- #flexbox -->
-    <div class="years">
-        <?= $year ?>年
-    </div>
-    <!-- 上一月，這一月，下一月 -->
-    <div class="a-month">
-        <a href="index.php?year=<?= $prevyear; ?>&month=<?= $prevmonth; ?>"><?= $prevmonth; ?>月</a>
-        <a href="index.php?year=<?= $year; ?>&month=<?= $month; ?>"><?= $month; ?>月</a>
-        <a href="index.php?year=<?= $nextyear; ?>&month=<?= $nextmonth; ?>"><?= $nextmonth; ?>月</a>
-    </div>
-    <hr>
-    <div class="contianer">
-        <div class="box tittle">星期日</div>
-        <div class="box tittle">星期一</div>
-        <div class="box tittle">星期二</div>
-        <div class="box tittle">星期三</div>
-        <div class="box tittle">星期四</div>
-        <div class="box tittle">星期五</div>
-        <div class="box tittle">星期六</div>
+<!-- #flexbox -->
+<div class="years">
+    <?= $year ?>年
+</div>
+<!-- 上一月，這一月，下一月 -->
 
-        <?php
+<div class="a-month">
+    <a href="index.php?year=<?= $prevyear; ?>&month=<?= $prevmonth; ?>"><?= $prevmonth; ?>月</a>
+    <a href="index.php?year=<?= $year; ?>&month=<?= $month; ?>"><?= $month; ?>月</a>
+    <a href="index.php?year=<?= $nextyear; ?>&month=<?= $nextmonth; ?>"
+        style="clip-path: polygon(1% 26%, 64% 40%, 60% 0%, 100% 50%, 60% 100%, 64% 63%, 1% 78%);"><?= $nextmonth; ?></a>
+</div>
+<hr>
+<div class="contianer">
+    <div class="box tittle">星期日</div>
+    <div class="box tittle">星期一</div>
+    <div class="box tittle">星期二</div>
+    <div class="box tittle">星期三</div>
+    <div class="box tittle">星期四</div>
+    <div class="box tittle">星期五</div>
+    <div class="box tittle">星期六</div>
 
-        #使用新的data格式判斷日期
-        // 需要使用explode()取出$data[]日期和判斷空白
-        for ($i = 0; $i < count($data); $i++) {
+    <?php
 
-            
-            echo "<div class='box  ";
-            $d = ($data[$i] == "&nbsp;") ? '&nbsp;' : explode('-', $data[$i])[2]; #取$i日期
-            if ($today == $data[$i]) { #判斷今天  
-                echo "today-day'>";
-                echo "<span class='day-font'>$d</span>"; #設定天數字型
+    #使用新的data格式判斷日期
+    // 需要使用explode()取出$data[]日期和判斷空白
+    for ($i = 0; $i < count($data); $i++) {
+        echo "<div class='box  ";
+        $d = explode('-', $data[$i])[2]; #取$i日期
+        $m = explode('-',$data[$i])[1];#取月份
         
-                if (isset($holiday[$data[$i]])) { #剛好國定假日在今天，取值
-                    $days = $holiday[$data[$i]];
+        if ($today == $data[$i]) { #判斷今天  
+            echo "today-day'>";
+            if($m != $month){echo"<span class='notmonthday-font'>$d</span>";    #控制非本月字型
+            }else{
+            echo "<span class='day-font'>$d</span>"; #設定天數字型
+            }
+            if (isset($holiday[$data[$i]])) { #剛好國定假日在今天，取值
+                $days = $holiday[$data[$i]];
+                echo "<span class='holiday-font'>$days</span>";
+            }
+            if($m != $month){echo"<span class='notmonthday-font'>$d</span>";    #控制非本月字型
+            }else{
+            echo "<br><span class='day-font'>Today</span>";
+            }
+            echo "</div>";
+           
+        } else {
+            if ($i % 7 == 0 or $i % 7 == 6) { #判斷6日
+                if (isset($holiday[$data[$i]])) { #判斷國定假日
+                    $days = $holiday[$data[$i]]; #將國定假日值取出
+                    echo "holiday-day'>";
+                    if($m != $month){echo"<span class='notmonthday-font'>$d</span>";    #控制非本月字型
+                    }else{
+                    echo "<span class='day-font'>$d</span>"; #設定天數字型
+                    }
                     echo "<span class='holiday-font'>$days</span>";
+                    echo "</div>";
+
+                } else { #不是國定假日的6日
+                    echo "holiday'>";
+                    if($m != $month){echo"<span class='notmonthday-font'>$d</span>";    #控制非本月字型
+                    }else{
+                    echo "<span class='day-font'>$d</span>";
+                    }
+                    echo "</div>";
                 }
-                echo "<br><span class='day-font'>Today</span>";
-                echo "</div>";
             } else {
-                if ($i % 7 == 0 or $i % 7 == 6) { #判斷6日
-                    if (isset($holiday[$data[$i]])) { #判斷國定假日
-                        $days = $holiday[$data[$i]]; #將國定假日值取出
-                        echo "holiday-day'>";
-                        echo "<span class='day-font'>$d</span>"; #設定天數字型
-        
-                        echo "<span class='holiday-font'>$days</span>";
-                        echo "</div>";
-
-                    } else { #不是國定假日的6日
-                        echo "holiday'>";
-                        echo "<span class='day-font'>$d</span>";
-                        echo "</div>";
+                if (isset($holiday[$data[$i]])) { #平日的國定假日
+                    $days = $holiday[$data[$i]];
+                    echo "holiday-day'>";
+                    if($m != $month){echo"<span class='notmonthday-font'>$d</span>";    #控制非本月字型
+                    }else{
+                    echo "<span class='day-font'>$d</span>";
                     }
-                } else {
-                    if (isset($holiday[$data[$i]])) { #平日的國定假日
-                        $days = $holiday[$data[$i]];
-                        echo "holiday-day'>";
-                        echo "<span class='day-font'>$d</span>";
-                        echo "<br>";
-                        echo "<span class='holiday-font'>$days</span>";
-                        echo "</div>";
+                    echo "<br>";
+                    echo "<span class='holiday-font'>$days</span>";
+                    echo "</div>";
 
-                    } else { #不是國定假日的平日
-                        echo "'>";
-                        $days = (isset($holiday[$data[$i]])) ? $holiday[$data[$i]] : "";
-                        echo "<span class='day-font'>$d</span>";
-                        echo "</div>";
+                } else { #不是國定假日的平日
+                    echo "'>";
+                    $days = (isset($holiday[$data[$i]])) ? $holiday[$data[$i]] : "";
+                    if($m != $month){echo"<span class='notmonthday-font'>$d</span>";    #控制非本月字型
+                    }else{
+                    echo "<span class='day-font'>$d</span>";
                     }
+                    echo "</div>";
                 }
             }
         }
-        ?>
+    }
+    ?>
 
-    </div>
+</div>
 
 </body>
 

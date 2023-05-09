@@ -83,10 +83,23 @@ backdrop-filter: blur(6.3px);
 -webkit-backdrop-filter: blur(6.3px);
 border: 1px solid rgba(196, 74, 32, 0.31);
 }
+.box:hover{
+    background-color: rgb(37, 228, 100);
+}
 /* 日數的字型 */
 .day-font{
-  
+    /* color: blue; */
 }
+.notmonthday-font{
+    color:rgba(255, 255, 255, 0.6);
+}
+
 .contianer>.today-day{
-    background-color: #b5dd23;
+    color: blue;
+}
+
+
+a{
+    
+    background-color:blueviolet;
 }
