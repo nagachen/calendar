@@ -10,8 +10,21 @@
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="calendar.css" media="all">
+
+    
     <style>
         /*請在這裹撰寫你的CSS*/
+        body{animation-name: akey; 
+            animation-duration: 60s;
+            animation-iteration-count: infinite; 
+        }
+        @keyframes akey{
+    0% {background-image: url('./images/<?=rand(4,8);?>.jpg');}
+    25% {background-image: url('./images/<?=rand(4,8);?>.jpg');}
+    50% {background-image: url('./images/<?=rand(4,8);?>.jpg');}
+    75% {background-image: url('./images/<?=rand(4,8);?>.jpg');}
+    100% {background-image: url('./images/<?=rand(4,8);?>.jpg');}        
+}
     </style>
 </head>
 
@@ -102,11 +115,6 @@
     $mon=['January','February','March','April','May','June',
           'July','August','September','October','November','December']
     ?>
-</body>
-<?= "<body style='animation-name: akey; 
-                 animation-duration: 60s;
-                 animation-iteration-count: infinite; 
-                 background-image: url(\"./images/$month.jpg\" );'>"; ?>
 
 <!-- #flexbox -->
 <div class="years">
@@ -119,7 +127,7 @@
     <a href="index.php?year=<?= $year; ?>&month=<?= $month; ?>"><?= $mon[$month-1]; ?></a>
     <a href="index.php?year=<?= $nextyear; ?>&month=<?= $nextmonth; ?>"class="right"></a>
 </div>
-<hr>
+
 <div class="contianer">
     <div class="box tittle">星期日</div>
     <div class="box tittle">星期一</div>
