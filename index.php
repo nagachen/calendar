@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,9 +16,7 @@
 </head>
 
 <body>
-
     <!-- 萬年歷 -->
-
     <?php
     #判斷從_GET[]所取得的資料
     $month = $_GET['month'] ?? date('n'); #判斷月
@@ -78,12 +75,7 @@
         }
     }
     // <!--假日資料庫 -->
-    // echo"<pre>";
-    // print_r($data);
-    // echo"</pre>";
-    $m = explode('-',$data[15])[1];#取月份
-    echo $m;
-    echo $month;
+        
     $holiday = [
         '2023-1-1' => '元旦',
         '2023-1-2' => '補假',
@@ -107,9 +99,14 @@
         '2023-10-9' => '彈性放假日',
         '2023-10-10' => '國慶日'
     ];
+    $mon=['January','February','March','April','May','June',
+          'July','August','September','October','November','December']
     ?>
 </body>
-<?= "<body style='background-image: url(\"./images/$month.jpg\" )'>"; ?>
+<?= "<body style='animation-name: akey; 
+                 animation-duration: 60s;
+                 animation-iteration-count: infinite; 
+                 background-image: url(\"./images/$month.jpg\" );'>"; ?>
 
 <!-- #flexbox -->
 <div class="years">
@@ -119,7 +116,7 @@
 
 <div class="a-month">
     <a href="index.php?year=<?= $prevyear; ?>&month=<?= $prevmonth; ?>" class="left"></a>
-    <a href="index.php?year=<?= $year; ?>&month=<?= $month; ?>"><?= $month; ?>月</a>
+    <a href="index.php?year=<?= $year; ?>&month=<?= $month; ?>"><?= $mon[$month-1]; ?></a>
     <a href="index.php?year=<?= $nextyear; ?>&month=<?= $nextmonth; ?>"class="right"></a>
 </div>
 <hr>

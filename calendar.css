@@ -114,3 +114,11 @@ border: 1px solid rgba(196, 74, 32, 0.31);
   transform: rotate(135deg);
 }
 
+@keyframes akey{
+    0% {background-image: url('./images/8.jpg');}
+    25% {background-image: url('./images/7.jpg');}
+    50% {background-image: url('./images/6.jpg');}
+    100% {background-image: url('./images/5.jpg');}
+ 
+}
+
