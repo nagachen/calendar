@@ -16,7 +16,8 @@
         /*請在這裹撰寫你的CSS*/
         body{animation-name: akey; 
             animation-duration: 60s;
-            animation-iteration-count: infinite; 
+            animation-iteration-count: infinite;
+            position:relative 
         }
         @keyframes akey{
     0% {background-image: url('./images/<?=rand(4,8);?>.jpg');}
@@ -25,10 +26,17 @@
     75% {background-image: url('./images/<?=rand(4,8);?>.jpg');}
     100% {background-image: url('./images/<?=rand(4,8);?>.jpg');}        
 }
+
     </style>
 </head>
 
 <body>
+    <!-- 流星 -->
+    <div class="fireball1"></div>
+    <div class="fireball2"></div>
+    <div class="fireball3"></div>
+
+   
     <!-- 萬年歷 -->
     <?php
     #判斷從_GET[]所取得的資料

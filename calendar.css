@@ -118,4 +118,76 @@ a{
     color: blue;
 }
 
+.fireball1{
+    animation-name: fire1; 
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    position: fixed;
+    transform: rotate(45deg);
+    background-image: url('./images/fire.png');
+    width: 200px;
+    height:200px;
+}
+@keyframes fire1{
+    0% {
+        
+        right:-600px;
+        top:-300px;}
+    
+    100% {
+        
+        right:1920px;
+        top:1080px;
+    }    
+}
 
+.fireball2{
+    animation-name: fire2; 
+    animation-duration: 25s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-delay: 2s;
+    position: fixed;
+    transform: rotate(30deg);
+    background-image: url('./images/fire.png');
+    width: 200px;
+    height:200px;
+}
+@keyframes fire2{
+    0% {
+        
+        right:600px;
+        top:-300px;}
+    
+    100% {
+        
+        right:1920px;
+        top:1080px;
+    }    
+}
+
+.fireball3{
+    animation-name: fire3; 
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-delay: 1s;
+    position: fixed;
+    transform: rotate(45deg);
+    background-image: url('./images/fire.png');
+    width: 200px;
+    height:200px;
+}
+@keyframes fire3{
+    0% {
+        
+        right:-200px;
+        top:300px;}
+    
+    100% {
+        
+        right:1920px;
+        top:1080px;
+    }    
+}
