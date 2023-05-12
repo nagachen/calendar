@@ -14,17 +14,71 @@
     
     <style>
         /*請在這裹撰寫你的CSS*/
-        body{animation-name: akey; 
+        body{
+            animation-name: akey; 
             animation-duration: 60s;
             animation-iteration-count: infinite;
             position:relative 
         }
-        @keyframes akey{
-    0% {background-image: url('./images/<?=rand(4,8);?>.jpg');}
-    25% {background-image: url('./images/<?=rand(4,8);?>.jpg');}
-    50% {background-image: url('./images/<?=rand(4,8);?>.jpg');}
-    75% {background-image: url('./images/<?=rand(4,8);?>.jpg');}
-    100% {background-image: url('./images/<?=rand(4,8);?>.jpg');}        
+        .contianer{
+            animation-name: a-con;
+            animation-duration: 60s;
+            animation-iteration-count: infinite;
+            position: absolute;
+            left: 100px;
+            bottom: 80px;  
+        }
+        @keyframes a-con{
+    0% {
+
+        left: 200px;
+        bottom: 180px;
+        opacity: 1;
+    }
+    25% {
+        left: 300px;
+        bottom: 280px;
+        opacity: 0;
+    }
+    50% {
+        
+        left: 400px;
+        bottom: 380px;
+        opacity: 1;
+    }
+    75% {
+        left: 500px;
+        bottom: 80px;
+        opacity: 0;
+    }
+    100% {
+        
+        left: 600px;
+        bottom: 780px;
+        opacity: 1;
+    }        
+}
+    @keyframes akey{
+    0% {
+        background-image: url('./images/<?=rand(4,8);?>.jpg');
+    
+    }
+    25% {
+        background-image: url('./images/<?=rand(4,8);?>.jpg');
+    
+    }
+    50% {
+        background-image: url('./images/<?=rand(4,8);?>.jpg');
+    
+    }
+    75% {
+        background-image: url('./images/<?=rand(4,8);?>.jpg');
+    
+    }
+    100% {
+        background-image: url('./images/<?=rand(4,8);?>.jpg');
+    
+    }        
 }
 
     </style>
