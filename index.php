@@ -20,6 +20,7 @@
             animation-iteration-count: infinite;
             position:relative 
         }
+        /*  月歷移動先行註解
         .contianer{
             animation-name: a-con;
             animation-duration: 60s;
@@ -33,31 +34,29 @@
 
         left: 200px;
         bottom: 180px;
-        opacity: 1;
+        
     }
     25% {
-        left: 300px;
-        bottom: 280px;
-        opacity: 0;
+        left: 850px;
+        bottom: 180px;
+       
     }
     50% {
         
-        left: 400px;
-        bottom: 380px;
-        opacity: 1;
+        left: 200px;
+        bottom: 180px;
+        
     }
     75% {
-        left: 500px;
-        bottom: 80px;
-        opacity: 0;
+        left: 850px;
+        bottom: 180px;
     }
     100% {
         
-        left: 600px;
-        bottom: 780px;
-        opacity: 1;
+        left: 200px;
+        bottom: 180px;
     }        
-}
+} */
     @keyframes akey{
     0% {
         background-image: url('./images/<?=rand(4,8);?>.jpg');
