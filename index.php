@@ -98,10 +98,14 @@
    
     <!-- 萬年歷 -->
     <?php
+    date_default_timezone_set('Asia/Taipei');
+
     #判斷從_GET[]所取得的資料
     $month = $_GET['month'] ?? date('n'); #判斷月
     $year = $_GET['year'] ?? date('Y'); #判斷年
     
+   
+
     #取得相關資料
     
     $first_day = strtotime("$year-$month-1"); #當月的第一天秒數
@@ -113,6 +117,8 @@
     $month_week = ceil($month_days / 7); #當月有幾週 6
     $today = date('Y-n-j'); #取得今天日期
     
+    
+     
     #判斷年月有沒有超過
     if ($month == 12) {
         $nextmonth = 1;
@@ -133,7 +139,7 @@
     $prevmonth_first_day = strtotime("$prevyear-$prevmonth-1"); #上個月的第一天秒數
     $prevmonth_days = date("t", $prevmonth_first_day); #取得上個月最後一天，天數
     $nextdays = 1;      #下個月從1號開始算
-
+    
     #建立月份陣列相關資料
     $data = [];
     for ($i = 0; $i < $month_week; $i++) {
@@ -148,14 +154,17 @@
                     
                     $data[] = $nextyear . '-' . $nextmonth . '-' . $nextdays++;
                 } else {
-                    $data[] = $year . '-' . $month . '-' . ($i * 7) + $j - $first_week + 1;
+                    $data[] = $year . "-" . $month . '-' . (($i * 7) + $j - $first_week + 1);
+                    
+
 
                 }
             }
         }
     }
+
     // <!--假日資料庫 -->
-        
+    
     $holiday = [
         '2023-1-1' => '元旦',
         '2023-1-2' => '補假',
@@ -205,14 +214,14 @@
     <div class="box tittle">星期六</div>
 
     <?php
-
+    
     #使用新的data格式判斷日期
     // 需要使用explode()取出$data[]日期和判斷空白
     for ($i = 0; $i < count($data); $i++) {
+
         echo "<div class='box  ";
         $d = explode('-', $data[$i])[2]; #取$i日期
         $m = explode('-',$data[$i])[1];#取月份
-        
         if ($today == $data[$i]) { #判斷今天  
             echo "today-day'>";
             if($m != $month){echo"<span class='notmonthday-font'>$d</span>";    #控制非本月字型
@@ -264,7 +273,8 @@
                 } else { #不是國定假日的平日
                     echo "'>";
                     $days = (isset($holiday[$data[$i]])) ? $holiday[$data[$i]] : "";
-                    if($m != $month){echo"<span class='notmonthday-font'>$d</span>";    #控制非本月字型
+                    
+                    if($m != $month){echo "<span class='notmonthday-font'> $d </span>";    #控制非本月字型
                     }else{
                     echo "<span class='day-font'>$d</span>";
                     }
